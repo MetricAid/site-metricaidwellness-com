@@ -3,62 +3,336 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MetricAid</title>
+  <meta name="theme-color" content="#0b1220" />
+  <meta name="description" content="MetricAid turns complex metrics into confident action." />
+  <title>MetricAid — Marketing Example</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(1200px 600px at 50% -10%, #1f2937, #020617);
-      color: #e5e7eb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-    .card {
-      max-width: 520px;
-      padding: 40px;
-      text-align: center;
-      background: rgba(15, 23, 42, 0.75);
-      border-radius: 14px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.6);
-      backdrop-filter: blur(10px);
-    }
-    h1 {
-      margin: 0 0 12px;
-      font-size: 2.1rem;
-      letter-spacing: -0.02em;
-    }
-    p {
-      margin: 0;
-      line-height: 1.6;
-      color: #cbd5f5;
-      font-size: 1.05rem;
-    }
-    .badge {
-      display: inline-block;
-      margin-top: 22px;
-      padding: 6px 14px;
-      font-size: 0.75rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      border-radius: 999px;
-      background: #2563eb;
-      color: #fff;
-    }
-  </style>
+  <!--
+    GitHub Pages-ready: plain HTML + CSS, no build step required.
+    Drop this folder into your repo (e.g., /docs or /) and enable Pages.
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 
 <body>
-  <div class="card">
-    <h1>MetricAid</h1>
-    <p>
-      We’re building modern tools that help healthcare organizations
-      operate smarter, scale faster, and deliver better outcomes.
-    </p>
-    <div class="badge">Coming Soon</div>
-  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="MetricAid home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">MetricAid</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="nav-link" href="#how">How it works</a>
+        <a class="nav-link" href="#use-cases">Use cases</a>
+        <a class="nav-link" href="#security">Enterprise</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <a class="btn btn-ghost" href="#contact">See how it works</a>
+        <a class="btn btn-primary" href="#contact">Book a demo</a>
+      </div>
+
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div class="mobile-nav" id="mobile-nav" hidden>
+      <div class="container mobile-nav-inner">
+        <a class="mobile-link" href="#how">How it works</a>
+        <a class="mobile-link" href="#use-cases">Use cases</a>
+        <a class="mobile-link" href="#security">Enterprise</a>
+        <a class="mobile-link" href="#contact">Contact</a>
+        <div class="mobile-cta">
+          <a class="btn btn-ghost" href="#contact">See how it works</a>
+          <a class="btn btn-primary" href="#contact">Book a demo</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Metrics → Meaning → Momentum</p>
+          <h1>Make Your Data Make Decisions.</h1>
+          <p class="lede">
+            MetricAid turns complex metrics into confident action. From cloud infrastructure to product performance,
+            we help teams see what matters, understand why it matters, and act before it’s too late.
+          </p>
+          <p class="lede-strong">Built for teams who don’t guess. They measure.</p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contact">Book a demo</a>
+            <a class="btn btn-ghost" href="#how">See how it works</a>
+          </div>
+
+          <div class="trust-row" aria-label="Trust signals">
+            <div class="trust-pill">Operator-first</div>
+            <div class="trust-pill">Enterprise-ready</div>
+            <div class="trust-pill">Signal over noise</div>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-card">
+            <div class="art-header">
+              <div class="art-dot"></div><div class="art-dot"></div><div class="art-dot"></div>
+            </div>
+            <div class="art-body">
+              <div class="spark"></div>
+              <div class="metric-lines">
+                <div class="line w-90"></div>
+                <div class="line w-75"></div>
+                <div class="line w-60"></div>
+              </div>
+              <div class="chips">
+                <span class="chip">Anomaly</span>
+                <span class="chip">Trend</span>
+                <span class="chip">Impact</span>
+              </div>
+            </div>
+          </div>
+          <div class="art-glow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE PROPS -->
+    <section class="section" aria-labelledby="value-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="value-title">Clarity at scale. Designed for action.</h2>
+          <p>Structured insights for teams operating modern, distributed systems — without the dashboard sprawl.</p>
+        </div>
+
+        <div class="grid cards">
+          <article class="card">
+            <h3>Clarity at Scale</h3>
+            <p>Metrics shouldn’t slow you down. MetricAid delivers clear, structured insight that scales with your systems — and your ambition.</p>
+          </article>
+
+          <article class="card">
+            <h3>Designed for Operators</h3>
+            <p>Engineers, product leaders, and executives all see the same truth, presented the way they need it.</p>
+          </article>
+
+          <article class="card">
+            <h3>From Signal to Action</h3>
+            <p>We don’t just show data. We surface what’s changing, why it matters, and what to do next.</p>
+          </article>
+
+          <article class="card">
+            <h3>Enterprise‑Ready</h3>
+            <p>Security, reliability, and performance are built in — not bolted on.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR BLOCK / STATEMENT -->
+    <section class="section statement" aria-labelledby="statement-title">
+      <div class="container statement-inner">
+        <h2 id="statement-title">Metrics are only powerful when they’re understood.</h2>
+        <p>
+          MetricAid bridges the gap between raw telemetry and real‑world decisions.
+          No dashboards for dashboard’s sake. No noise. No guesswork.
+        </p>
+        <p class="statement-strong">Just insight, clearly delivered.</p>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="how-title">How teams use MetricAid</h2>
+          <p>A simple flow that meets your stack where it is — and improves what comes out.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <div class="step-num" aria-hidden="true">1</div>
+            <div class="step-body">
+              <h3>Connect your systems</h3>
+              <p>Cloud, applications, infrastructure — MetricAid fits into your existing stack.</p>
+            </div>
+          </li>
+
+          <li class="step">
+            <div class="step-num" aria-hidden="true">2</div>
+            <div class="step-body">
+              <h3>Normalize the chaos</h3>
+              <p>We bring structure and consistency to metrics across teams and tools.</p>
+            </div>
+          </li>
+
+          <li class="step">
+            <div class="step-num" aria-hidden="true">3</div>
+            <div class="step-body">
+              <h3>Surface what matters</h3>
+              <p>Anomalies, trends, and risks are highlighted automatically.</p>
+            </div>
+          </li>
+
+          <li class="step">
+            <div class="step-num" aria-hidden="true">4</div>
+            <div class="step-body">
+              <h3>Act with confidence</h3>
+              <p>When something changes, you know what it means — and what to do next.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section class="section" id="use-cases" aria-labelledby="usecases-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="usecases-title">Use cases</h2>
+          <p>Different roles. One shared source of truth.</p>
+        </div>
+
+        <div class="split">
+          <article class="panel">
+            <h3>For Engineering Teams</h3>
+            <p>See performance issues before customers do. Reduce alert fatigue. Ship with confidence.</p>
+            <ul class="bullets">
+              <li>Detect anomalies early</li>
+              <li>Reduce noise &amp; fatigue</li>
+              <li>Improve incident response</li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h3>For Product Leaders</h3>
+            <p>Understand real usage, not vanity metrics. Make roadmap decisions backed by evidence.</p>
+            <ul class="bullets">
+              <li>Track meaningful outcomes</li>
+              <li>Measure adoption &amp; friction</li>
+              <li>Align teams with evidence</li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h3>For Executives</h3>
+            <p>A single, trusted view of system health and business impact. No technical translation required.</p>
+            <ul class="bullets">
+              <li>See risk &amp; impact clearly</li>
+              <li>Standardize reporting</li>
+              <li>Make faster decisions</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENTERPRISE / SECURITY -->
+    <section class="section security" id="security" aria-labelledby="security-title">
+      <div class="container security-inner">
+        <div>
+          <h2 id="security-title">Built for real‑world complexity</h2>
+          <p>
+            MetricAid is trusted by teams operating modern, distributed systems — where reliability, performance,
+            and insight aren’t optional.
+          </p>
+          <p class="lede-strong">We’re not a generic dashboard. We’re a decision platform.</p>
+        </div>
+
+        <div class="security-grid" aria-label="Enterprise readiness">
+          <div class="mini">
+            <h3>Security‑minded</h3>
+            <p>Strong defaults and clear controls for access and governance.</p>
+          </div>
+          <div class="mini">
+            <h3>Reliable</h3>
+            <p>Designed to keep up with high‑volume, high‑stakes environments.</p>
+          </div>
+          <div class="mini">
+            <h3>Performant</h3>
+            <p>Fast insight without forcing teams to compromise on signal quality.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / CTA -->
+    <section class="section cta" id="contact" aria-labelledby="cta-title">
+      <div class="container cta-inner">
+        <div class="cta-copy">
+          <h2 id="cta-title">Stop staring at metrics. Start using them.</h2>
+          <p>
+            Whether you’re scaling fast or stabilizing critical systems, MetricAid gives you the clarity to move forward with confidence.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:sales@metricaid.com?subject=MetricAid%20Demo%20Request">Talk to sales</a>
+            <a class="btn btn-ghost" href="mailto:hello@metricaid.com?subject=MetricAid%20Info%20Request">Request info</a>
+          </div>
+
+          <p class="fineprint">
+            Replace email CTAs with your preferred form provider (HubSpot, Marketo, etc.) when integrating.
+          </p>
+        </div>
+
+        <form class="form" aria-label="Contact form (static example)" onsubmit="return window.MetricAidSite.handleSubmit(event);">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Doe" required />
+          </div>
+
+          <div class="form-row">
+            <label for="email">Work email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="jane@company.com" required />
+          </div>
+
+          <div class="form-row">
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" autocomplete="organization" placeholder="Acme Inc." />
+          </div>
+
+          <div class="form-row">
+            <label for="message">What would you like to solve?</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us about your environment, goals, or current pain points." required></textarea>
+          </div>
+
+          <button class="btn btn-primary btn-block" type="submit">Send</button>
+
+          <p class="fineprint" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="brand brand-footer">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">MetricAid</span>
+        </div>
+        <p class="fineprint">© <span id="year"></span> MetricAid. All rights reserved.</p>
+      </div>
+
+      <div class="footer-right">
+        <a class="footer-link" href="#top">Back to top</a>
+        <a class="footer-link" href="https://metricaid.com" rel="noopener">Corporate site</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
 </body>
 </html>
-
