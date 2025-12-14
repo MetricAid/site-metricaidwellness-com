@@ -3,336 +3,855 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="MetricAid — scheduling made simple for healthcare teams. Match shifts to skills, reduce admin time, and keep care covered." />
   <meta name="theme-color" content="#0b1220" />
-  <meta name="description" content="MetricAid turns complex metrics into confident action." />
-  <title>MetricAid — Marketing Example</title>
+  <title>MetricAid — Healthcare Scheduling, Simplified</title>
 
-  <!--
-    GitHub Pages-ready: plain HTML + CSS, no build step required.
-    Drop this folder into your repo (e.g., /docs or /) and enable Pages.
-  -->
+  <style>
+    /* Single-file, production-ready landing page (no external assets).
+       Customize brand colors here. */
+    :root{
+      --bg:#0b1220;
+      --bg2:#0f1a33;
+      --card:rgba(255,255,255,.07);
+      --card2:rgba(255,255,255,.10);
+      --border:rgba(255,255,255,.14);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --faint:rgba(255,255,255,.56);
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+      --accent:#7c3aed;   /* brand highlight 1 */
+      --accent2:#06b6d4;  /* brand highlight 2 */
+      --accent3:#22c55e;  /* brand highlight 3 */
 
-  <link rel="stylesheet" href="assets/styles.css" />
+      --shadow:0 18px 55px rgba(0,0,0,.45);
+      --radius:18px;
+      --container:1120px;
+      --ease:cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      line-height:1.45;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 680px at 80% -10%, rgba(124,58,237,.25), transparent 55%),
+        radial-gradient(1000px 680px at 10% 10%, rgba(6,182,212,.18), transparent 55%),
+        radial-gradient(900px 600px at 30% 105%, rgba(34,197,94,.10), transparent 60%),
+        var(--bg);
+    }
+
+    a{color:inherit; text-decoration:none}
+    a:hover{text-decoration:none}
+    .container{max-width:var(--container); margin:0 auto; padding:0 20px}
+
+    .skip{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip:focus{
+      left:20px; top:20px; width:auto; height:auto; padding:10px 12px; border-radius:12px;
+      background:#fff; color:#000; z-index:9999;
+    }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(12px);
+      background: rgba(11,18,32,.62);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .header-inner{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding:14px 0;
+    }
+    .brand{display:flex; align-items:center; gap:10px; min-width:180px}
+    .mark{
+      width:14px; height:14px; border-radius:5px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 28px rgba(124,58,237,.22);
+    }
+    .brand b{font-weight:800; letter-spacing:.2px}
+
+    nav{display:flex; gap:18px; align-items:center}
+    nav a{
+      font-size:14px; font-weight:600; color:var(--muted);
+      padding:8px 10px; border-radius:12px;
+    }
+    nav a:hover{color:var(--text); background: rgba(255,255,255,.06)}
+
+    .cta{
+      display:flex; gap:10px; align-items:center;
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:700; font-size:14px;
+      border:1px solid transparent;
+      transition: transform .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease);
+      white-space:nowrap;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-color: rgba(255,255,255,.12);
+      box-shadow: 0 14px 40px rgba(6,182,212,.10);
+    }
+    .btn.primary:hover{transform: translateY(-1px)}
+    .btn.ghost{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.12);
+    }
+    .btn.ghost:hover{background: rgba(255,255,255,.10)}
+    .btn.block{width:100%}
+
+    /* Mobile nav */
+    .menu-btn{
+      display:none;
+      background: transparent;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:10px;
+      color:var(--text);
+    }
+    .menu-lines{
+      width:22px; height:14px; display:block; opacity:.9;
+      background:
+        linear-gradient(var(--text),var(--text)) 0 0/100% 2px,
+        linear-gradient(var(--text),var(--text)) 0 6px/100% 2px,
+        linear-gradient(var(--text),var(--text)) 0 12px/100% 2px;
+      background-repeat:no-repeat;
+    }
+    .mobile{
+      border-top:1px solid rgba(255,255,255,.08);
+      background: rgba(11,18,32,.92);
+    }
+    .mobile-inner{padding:14px 0 18px; display:grid; gap:10px}
+    .mobile-inner a{
+      padding:10px 12px; border-radius:12px;
+      color:var(--muted); font-weight:650;
+    }
+    .mobile-inner a:hover{background: rgba(255,255,255,.06); color:var(--text)}
+    .mobile-cta{display:flex; gap:10px; padding-top:6px}
+
+    /* Sections */
+    main{padding-bottom: 26px}
+    section{padding:72px 0}
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
+      margin-bottom:22px;
+    }
+    h1,h2,h3{margin:0}
+    h2{font-size:28px; line-height:1.1}
+    .lead{margin:0; color:var(--muted); max-width:62ch}
+
+    /* Hero */
+    .hero{padding:70px 0 42px}
+    .hero-grid{
+      display:grid; grid-template-columns: 1.1fr .9fr; gap:22px; align-items:center;
+    }
+    .eyebrow{
+      margin:0 0 14px;
+      font-size:13px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+      color: var(--muted);
+    }
+    .hero h1{
+      font-size: clamp(34px, 4.4vw, 56px);
+      line-height:1.02;
+      margin: 0 0 16px;
+    }
+    .hero p{margin:0 0 14px; color: var(--muted); font-size:17px; max-width: 62ch}
+    .hero .strong{color:var(--text); font-weight:700}
+    .pill-row{display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px}
+    .pill{
+      font-size:12px; color:var(--muted);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      padding:8px 10px; border-radius:999px;
+    }
+
+    .hero-card{
+      border-radius: 22px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-card .top{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .dots{display:flex; gap:6px}
+    .dot{width:10px; height:10px; border-radius:50%; background: rgba(255,255,255,.18)}
+    .badge{
+      font-size:12px; font-weight:800;
+      color: rgba(255,255,255,.85);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(11,18,32,.55);
+      padding:6px 10px; border-radius:999px;
+    }
+    .hero-card .body{padding: 16px 16px 18px}
+    .mini-grid{display:grid; gap:10px}
+    .mini-row{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding: 12px 12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      border-radius: 16px;
+    }
+    .mini-row b{font-size:13px}
+    .mini-row span{font-size:12px; color: var(--muted)}
+    .status{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; font-weight:800;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(124,58,237,.28), rgba(6,182,212,.18));
+    }
+    .status i{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(34,197,94,.9);
+      box-shadow: 0 0 0 4px rgba(34,197,94,.12);
+      display:inline-block;
+    }
+
+    /* Cards */
+    .grid{display:grid; gap:14px}
+    .cards-4{grid-template-columns: repeat(4, 1fr)}
+    .card{
+      padding: 18px 18px 16px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 10px 28px rgba(0,0,0,.18);
+    }
+    .card h3{font-size:16px; margin:0 0 8px}
+    .card p{margin:0; color:var(--muted)}
+    .subtle{
+      color: var(--faint);
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    /* Story/Value band */
+    .band{
+      background:
+        radial-gradient(900px 560px at 20% 10%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(900px 560px at 80% 30%, rgba(6,182,212,.20), transparent 60%),
+        rgba(255,255,255,.03);
+      border-top:1px solid rgba(255,255,255,.08);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .band-box{
+      border-radius: 24px;
+      padding: 26px 22px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(11,18,32,.55);
+      box-shadow: var(--shadow);
+    }
+    .band-box h2{font-size:30px; margin-bottom: 10px}
+    .band-box p{margin: 0 0 10px; color: var(--muted); max-width: 70ch}
+    .band-box .strong{font-weight:800; color: var(--text)}
+
+    /* Steps */
+    .steps{list-style:none; padding:0; margin:0; display:grid; gap:12px}
+    .step{
+      display:flex; gap:14px;
+      padding: 16px 16px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+    }
+    .num{
+      width:38px; height:38px; border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900;
+      background: linear-gradient(135deg, rgba(124,58,237,.35), rgba(6,182,212,.22));
+      border:1px solid rgba(255,255,255,.12);
+      flex: 0 0 auto;
+    }
+    .step h3{font-size:16px; margin:2px 0 6px}
+    .step p{margin:0; color: var(--muted)}
+
+    /* Use cases */
+    .split-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .bullets{margin:0; padding-left:18px; color:var(--muted)}
+    .bullets li{margin: 8px 0}
+
+    /* Pricing */
+    .pricing{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    .price{
+      position:relative;
+      padding: 20px 18px 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 10px 28px rgba(0,0,0,.18);
+      overflow:hidden;
+    }
+    .price.featured{
+      border-color: rgba(6,182,212,.35);
+      box-shadow: 0 22px 70px rgba(6,182,212,.12);
+    }
+    .price .plan{font-weight:900; letter-spacing:.02em}
+    .price .tag{
+      display:inline-flex; align-items:center;
+      font-size:12px; font-weight:900;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(11,18,32,.55);
+      color: rgba(255,255,255,.88);
+      margin-top: 10px;
+    }
+    .price .cost{
+      font-size: 34px;
+      font-weight: 950;
+      margin: 12px 0 4px;
+      line-height:1.05;
+    }
+    .price .per{color: var(--muted); font-size: 13px; margin-bottom: 14px}
+    .price ul{margin:0; padding-left:18px; color:var(--muted)}
+    .price li{margin: 8px 0}
+    .price .fine{margin-top: 12px; font-size: 12px; color: var(--faint)}
+    .glow{
+      position:absolute; inset:-40% -40%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(124,58,237,.22), transparent 55%),
+        radial-gradient(circle at 70% 70%, rgba(6,182,212,.18), transparent 60%);
+      filter: blur(10px);
+      z-index:0;
+    }
+    .price > *{position:relative; z-index:1}
+
+    /* CTA + Form */
+    .cta-band{
+      padding: 78px 0;
+      background:
+        radial-gradient(900px 600px at 15% 20%, rgba(34,197,94,.20), transparent 55%),
+        radial-gradient(900px 560px at 85% 40%, rgba(124,58,237,.22), transparent 55%),
+        rgba(255,255,255,.02);
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .cta-grid{display:grid; grid-template-columns: 1.05fr .95fr; gap:16px; align-items:start}
+    .form{
+      padding: 18px 18px 16px;
+      border-radius: 22px;
+      background: rgba(11,18,32,.55);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+    }
+    .row{display:grid; gap:6px; margin-bottom:12px}
+    label{font-size:13px; color:var(--muted); font-weight:750}
+    input, textarea{
+      width:100%;
+      font:inherit;
+      color:var(--text);
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 10px 12px;
+      outline:none;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(6,182,212,.55);
+      box-shadow: 0 0 0 4px rgba(6,182,212,.12);
+    }
+    .fineprint{margin:10px 0 0; color:var(--faint); font-size:12px}
+    .statusline{margin:10px 0 0; color:var(--faint); font-size:12px}
+
+    /* Footer */
+    footer{
+      padding: 22px 0 34px;
+      border-top:1px solid rgba(255,255,255,.08);
+      background: rgba(11,18,32,.6);
+    }
+    .footer-inner{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+    .footer-links a{color: var(--muted); font-size:13px; margin-left:14px}
+    .footer-links a:hover{color: var(--text)}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr}
+      .cards-4{grid-template-columns: repeat(2, 1fr)}
+      .split-3{grid-template-columns: 1fr}
+      .pricing{grid-template-columns: 1fr}
+      .section-head{flex-direction:column; align-items:flex-start}
+      .cta-grid{grid-template-columns: 1fr}
+    }
+    @media (max-width: 760px){
+      nav, .cta{display:none}
+      .menu-btn{display:inline-flex}
+      .cards-4{grid-template-columns: 1fr}
+    }
+  </style>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
 
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="MetricAid home">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-name">MetricAid</span>
-      </a>
+<header>
+  <div class="container header-inner">
+    <a class="brand" href="#top" aria-label="MetricAid home">
+      <span class="mark" aria-hidden="true"></span>
+      <b>MetricAid</b>
+    </a>
 
-      <nav class="nav" aria-label="Primary">
-        <a class="nav-link" href="#how">How it works</a>
-        <a class="nav-link" href="#use-cases">Use cases</a>
-        <a class="nav-link" href="#security">Enterprise</a>
-        <a class="nav-link" href="#contact">Contact</a>
-      </nav>
+    <nav aria-label="Primary">
+      <a href="#why">Why MetricAid</a>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Plans</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-      <div class="header-cta">
-        <a class="btn btn-ghost" href="#contact">See how it works</a>
-        <a class="btn btn-primary" href="#contact">Book a demo</a>
-      </div>
-
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
-        <span class="nav-toggle-lines" aria-hidden="true"></span>
-      </button>
+    <div class="cta">
+      <a class="btn ghost" href="#how">See it in action</a>
+      <a class="btn primary" href="#contact">Book a demo</a>
     </div>
 
-    <div class="mobile-nav" id="mobile-nav" hidden>
-      <div class="container mobile-nav-inner">
-        <a class="mobile-link" href="#how">How it works</a>
-        <a class="mobile-link" href="#use-cases">Use cases</a>
-        <a class="mobile-link" href="#security">Enterprise</a>
-        <a class="mobile-link" href="#contact">Contact</a>
-        <div class="mobile-cta">
-          <a class="btn btn-ghost" href="#contact">See how it works</a>
-          <a class="btn btn-primary" href="#contact">Book a demo</a>
-        </div>
+    <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile">
+      <span class="menu-lines" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="mobile" id="mobile" hidden>
+    <div class="container mobile-inner">
+      <a href="#why">Why MetricAid</a>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Plans</a>
+      <a href="#contact">Contact</a>
+      <div class="mobile-cta">
+        <a class="btn ghost" href="#how">See it in action</a>
+        <a class="btn primary" href="#contact">Book a demo</a>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main id="main">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow">Metrics → Meaning → Momentum</p>
-          <h1>Make Your Data Make Decisions.</h1>
-          <p class="lede">
-            MetricAid turns complex metrics into confident action. From cloud infrastructure to product performance,
-            we help teams see what matters, understand why it matters, and act before it’s too late.
-          </p>
-          <p class="lede-strong">Built for teams who don’t guess. They measure.</p>
-
-          <div class="cta-row">
-            <a class="btn btn-primary" href="#contact">Book a demo</a>
-            <a class="btn btn-ghost" href="#how">See how it works</a>
-          </div>
-
-          <div class="trust-row" aria-label="Trust signals">
-            <div class="trust-pill">Operator-first</div>
-            <div class="trust-pill">Enterprise-ready</div>
-            <div class="trust-pill">Signal over noise</div>
-          </div>
-        </div>
-
-        <div class="hero-art" aria-hidden="true">
-          <div class="art-card">
-            <div class="art-header">
-              <div class="art-dot"></div><div class="art-dot"></div><div class="art-dot"></div>
-            </div>
-            <div class="art-body">
-              <div class="spark"></div>
-              <div class="metric-lines">
-                <div class="line w-90"></div>
-                <div class="line w-75"></div>
-                <div class="line w-60"></div>
-              </div>
-              <div class="chips">
-                <span class="chip">Anomaly</span>
-                <span class="chip">Trend</span>
-                <span class="chip">Impact</span>
-              </div>
-            </div>
-          </div>
-          <div class="art-glow"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VALUE PROPS -->
-    <section class="section" aria-labelledby="value-title">
-      <div class="container">
-        <div class="section-head">
-          <h2 id="value-title">Clarity at scale. Designed for action.</h2>
-          <p>Structured insights for teams operating modern, distributed systems — without the dashboard sprawl.</p>
-        </div>
-
-        <div class="grid cards">
-          <article class="card">
-            <h3>Clarity at Scale</h3>
-            <p>Metrics shouldn’t slow you down. MetricAid delivers clear, structured insight that scales with your systems — and your ambition.</p>
-          </article>
-
-          <article class="card">
-            <h3>Designed for Operators</h3>
-            <p>Engineers, product leaders, and executives all see the same truth, presented the way they need it.</p>
-          </article>
-
-          <article class="card">
-            <h3>From Signal to Action</h3>
-            <p>We don’t just show data. We surface what’s changing, why it matters, and what to do next.</p>
-          </article>
-
-          <article class="card">
-            <h3>Enterprise‑Ready</h3>
-            <p>Security, reliability, and performance are built in — not bolted on.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- COLOR BLOCK / STATEMENT -->
-    <section class="section statement" aria-labelledby="statement-title">
-      <div class="container statement-inner">
-        <h2 id="statement-title">Metrics are only powerful when they’re understood.</h2>
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Healthcare scheduling, without the chaos</p>
+        <h1>Schedule the right clinician, for the right shift — in minutes.</h1>
         <p>
-          MetricAid bridges the gap between raw telemetry and real‑world decisions.
-          No dashboards for dashboard’s sake. No noise. No guesswork.
+          MetricAid helps healthcare organizations coordinate staffing across clinics, facilities, and community care.
+          Plan ahead, fill gaps fast, and keep coverage compliant — without spreadsheet stress.
         </p>
-        <p class="statement-strong">Just insight, clearly delivered.</p>
-      </div>
-    </section>
+        <p class="strong">
+          Built for schedulers and managers. Loved by clinicians.
+        </p>
 
-    <!-- HOW IT WORKS -->
-    <section class="section" id="how" aria-labelledby="how-title">
-      <div class="container">
-        <div class="section-head">
-          <h2 id="how-title">How teams use MetricAid</h2>
-          <p>A simple flow that meets your stack where it is — and improves what comes out.</p>
+        <div class="cta" style="display:flex; gap:12px; flex-wrap:wrap; margin-top: 18px">
+          <a class="btn primary" href="#contact">Request a demo</a>
+          <a class="btn ghost" href="#features">Explore features</a>
         </div>
 
-        <ol class="steps">
-          <li class="step">
-            <div class="step-num" aria-hidden="true">1</div>
-            <div class="step-body">
-              <h3>Connect your systems</h3>
-              <p>Cloud, applications, infrastructure — MetricAid fits into your existing stack.</p>
-            </div>
-          </li>
-
-          <li class="step">
-            <div class="step-num" aria-hidden="true">2</div>
-            <div class="step-body">
-              <h3>Normalize the chaos</h3>
-              <p>We bring structure and consistency to metrics across teams and tools.</p>
-            </div>
-          </li>
-
-          <li class="step">
-            <div class="step-num" aria-hidden="true">3</div>
-            <div class="step-body">
-              <h3>Surface what matters</h3>
-              <p>Anomalies, trends, and risks are highlighted automatically.</p>
-            </div>
-          </li>
-
-          <li class="step">
-            <div class="step-num" aria-hidden="true">4</div>
-            <div class="step-body">
-              <h3>Act with confidence</h3>
-              <p>When something changes, you know what it means — and what to do next.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- USE CASES -->
-    <section class="section" id="use-cases" aria-labelledby="usecases-title">
-      <div class="container">
-        <div class="section-head">
-          <h2 id="usecases-title">Use cases</h2>
-          <p>Different roles. One shared source of truth.</p>
-        </div>
-
-        <div class="split">
-          <article class="panel">
-            <h3>For Engineering Teams</h3>
-            <p>See performance issues before customers do. Reduce alert fatigue. Ship with confidence.</p>
-            <ul class="bullets">
-              <li>Detect anomalies early</li>
-              <li>Reduce noise &amp; fatigue</li>
-              <li>Improve incident response</li>
-            </ul>
-          </article>
-
-          <article class="panel">
-            <h3>For Product Leaders</h3>
-            <p>Understand real usage, not vanity metrics. Make roadmap decisions backed by evidence.</p>
-            <ul class="bullets">
-              <li>Track meaningful outcomes</li>
-              <li>Measure adoption &amp; friction</li>
-              <li>Align teams with evidence</li>
-            </ul>
-          </article>
-
-          <article class="panel">
-            <h3>For Executives</h3>
-            <p>A single, trusted view of system health and business impact. No technical translation required.</p>
-            <ul class="bullets">
-              <li>See risk &amp; impact clearly</li>
-              <li>Standardize reporting</li>
-              <li>Make faster decisions</li>
-            </ul>
-          </article>
+        <div class="pill-row" aria-label="Highlights">
+          <span class="pill">Fast to learn</span>
+          <span class="pill">Role &amp; credential aware</span>
+          <span class="pill">Mobile-friendly</span>
+          <span class="pill">Audit-ready</span>
         </div>
       </div>
-    </section>
 
-    <!-- ENTERPRISE / SECURITY -->
-    <section class="section security" id="security" aria-labelledby="security-title">
-      <div class="container security-inner">
-        <div>
-          <h2 id="security-title">Built for real‑world complexity</h2>
-          <p>
-            MetricAid is trusted by teams operating modern, distributed systems — where reliability, performance,
-            and insight aren’t optional.
-          </p>
-          <p class="lede-strong">We’re not a generic dashboard. We’re a decision platform.</p>
+      <div class="hero-card" aria-label="Product preview (illustration)">
+        <div class="top">
+          <div class="dots" aria-hidden="true">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+          <span class="badge">Live schedule view</span>
         </div>
+        <div class="body">
+          <div class="mini-grid">
+            <div class="mini-row">
+              <div>
+                <b>ER — Night Shift</b><br>
+                <span>RN • 19:00–07:00</span>
+              </div>
+              <span class="status"><i></i> Covered</span>
+            </div>
 
-        <div class="security-grid" aria-label="Enterprise readiness">
-          <div class="mini">
-            <h3>Security‑minded</h3>
-            <p>Strong defaults and clear controls for access and governance.</p>
-          </div>
-          <div class="mini">
-            <h3>Reliable</h3>
-            <p>Designed to keep up with high‑volume, high‑stakes environments.</p>
-          </div>
-          <div class="mini">
-            <h3>Performant</h3>
-            <p>Fast insight without forcing teams to compromise on signal quality.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+            <div class="mini-row">
+              <div>
+                <b>Clinic — Vaccination</b><br>
+                <span>RN • 09:00–13:00</span>
+              </div>
+              <span class="status" style="background: linear-gradient(135deg, rgba(6,182,212,.26), rgba(255,255,255,.06));">
+                <i style="background: rgba(6,182,212,.9); box-shadow: 0 0 0 4px rgba(6,182,212,.12)"></i>
+                Needs review
+              </span>
+            </div>
 
-    <!-- CONTACT / CTA -->
-    <section class="section cta" id="contact" aria-labelledby="cta-title">
-      <div class="container cta-inner">
-        <div class="cta-copy">
-          <h2 id="cta-title">Stop staring at metrics. Start using them.</h2>
-          <p>
-            Whether you’re scaling fast or stabilizing critical systems, MetricAid gives you the clarity to move forward with confidence.
-          </p>
-
-          <div class="cta-row">
-            <a class="btn btn-primary" href="mailto:sales@metricaid.com?subject=MetricAid%20Demo%20Request">Talk to sales</a>
-            <a class="btn btn-ghost" href="mailto:hello@metricaid.com?subject=MetricAid%20Info%20Request">Request info</a>
+            <div class="mini-row">
+              <div>
+                <b>LTC — Weekend Coverage</b><br>
+                <span>PSW • 08:00–16:00</span>
+              </div>
+              <span class="status" style="background: linear-gradient(135deg, rgba(124,58,237,.26), rgba(255,255,255,.06));">
+                <i style="background: rgba(124,58,237,.9); box-shadow: 0 0 0 4px rgba(124,58,237,.12)"></i>
+                Open
+              </span>
+            </div>
           </div>
 
-          <p class="fineprint">
-            Replace email CTAs with your preferred form provider (HubSpot, Marketo, etc.) when integrating.
+          <p class="subtle">
+            Drag-and-drop assignments, automatic conflict checks, and a clear view of coverage — all in one place.
           </p>
         </div>
-
-        <form class="form" aria-label="Contact form (static example)" onsubmit="return window.MetricAidSite.handleSubmit(event);">
-          <div class="form-row">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Doe" required />
-          </div>
-
-          <div class="form-row">
-            <label for="email">Work email</label>
-            <input id="email" name="email" type="email" autocomplete="email" placeholder="jane@company.com" required />
-          </div>
-
-          <div class="form-row">
-            <label for="company">Company</label>
-            <input id="company" name="company" type="text" autocomplete="organization" placeholder="Acme Inc." />
-          </div>
-
-          <div class="form-row">
-            <label for="message">What would you like to solve?</label>
-            <textarea id="message" name="message" rows="4" placeholder="Tell us about your environment, goals, or current pain points." required></textarea>
-          </div>
-
-          <button class="btn btn-primary btn-block" type="submit">Send</button>
-
-          <p class="fineprint" id="form-status" role="status" aria-live="polite"></p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-left">
-        <div class="brand brand-footer">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span class="brand-name">MetricAid</span>
-        </div>
-        <p class="fineprint">© <span id="year"></span> MetricAid. All rights reserved.</p>
-      </div>
-
-      <div class="footer-right">
-        <a class="footer-link" href="#top">Back to top</a>
-        <a class="footer-link" href="https://metricaid.com" rel="noopener">Corporate site</a>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <script src="assets/main.js"></script>
+  <!-- WHY -->
+  <section id="why">
+    <div class="container">
+      <div class="section-head">
+        <h2>Why MetricAid</h2>
+        <p class="lead">Your schedule is a patient-safety system. MetricAid makes it dependable, transparent, and easy to manage.</p>
+      </div>
+
+      <div class="grid cards-4">
+        <article class="card">
+          <h3>Fill shifts faster</h3>
+          <p>See gaps instantly, match staff by role and availability, and reduce back-and-forth calls and emails.</p>
+        </article>
+        <article class="card">
+          <h3>Reduce admin time</h3>
+          <p>Standardize scheduling workflows and eliminate duplicate entry across spreadsheets and calendars.</p>
+        </article>
+        <article class="card">
+          <h3>Stay compliant</h3>
+          <p>Keep credential and role requirements in view with clear checks and audit-friendly history.</p>
+        </article>
+        <article class="card">
+          <h3>Improve clinician experience</h3>
+          <p>Clear assignments, fewer surprises, and smoother communication help teams focus on care.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE BAND -->
+  <section class="band" aria-label="Value statement">
+    <div class="container">
+      <div class="band-box">
+        <h2>Scheduling shouldn’t be the hardest part of healthcare.</h2>
+        <p>
+          MetricAid replaces fragile workflows with a reliable system that keeps staffing decisions clear,
+          consistent, and easy to explain.
+        </p>
+        <p class="strong">Less chaos. Better coverage. More time for care.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head">
+        <h2>Features schedulers actually use</h2>
+        <p class="lead">Built for real-world conditions: last-minute changes, credential requirements, and multiple locations.</p>
+      </div>
+
+      <div class="grid cards-4">
+        <article class="card">
+          <h3>Smart shift matching</h3>
+          <p>Find the best available clinician based on role, skills, and schedule fit — quickly and consistently.</p>
+          <p class="subtle">Reduce manual searching and “who can take this?” guesswork.</p>
+        </article>
+
+        <article class="card">
+          <h3>Conflict &amp; coverage checks</h3>
+          <p>Catch overlaps and gaps early with clear visual alerts and schedule-wide views.</p>
+          <p class="subtle">Know what’s covered — and what’s at risk — at a glance.</p>
+        </article>
+
+        <article class="card">
+          <h3>Clinician-friendly access</h3>
+          <p>Share schedules clearly and keep everyone aligned with mobile-friendly views and simple updates.</p>
+          <p class="subtle">Less confusion. Fewer missed shifts.</p>
+        </article>
+
+        <article class="card">
+          <h3>Audit-ready history</h3>
+          <p>Track changes over time with a clear record of assignments, edits, and approvals.</p>
+          <p class="subtle">Support compliance and easy reporting when needed.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head">
+        <h2>How it works</h2>
+        <p class="lead">Simple to adopt. Straightforward to run. Flexible as your organization grows.</p>
+      </div>
+
+      <ol class="steps">
+        <li class="step">
+          <div class="num" aria-hidden="true">1</div>
+          <div>
+            <h3>Set up roles, sites, and rules</h3>
+            <p>Define shift types, required credentials, staffing rules, and locations in a clear admin view.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="num" aria-hidden="true">2</div>
+          <div>
+            <h3>Build schedules quickly</h3>
+            <p>Create and adjust schedules with a fast, visual workflow designed for real-time changes.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="num" aria-hidden="true">3</div>
+          <div>
+            <h3>Notify and coordinate</h3>
+            <p>Keep clinicians informed with clear assignments and fewer surprises when the plan changes.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="num" aria-hidden="true">4</div>
+          <div>
+            <h3>Stay on top of coverage</h3>
+            <p>Monitor gaps and risk areas with a schedule-wide view that supports better decisions.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section aria-label="Use cases">
+    <div class="container">
+      <div class="section-head">
+        <h2>Made for every part of the operation</h2>
+        <p class="lead">One system that supports schedulers, managers, and clinicians — without extra complexity.</p>
+      </div>
+
+      <div class="split-3">
+        <article class="card">
+          <h3>Schedulers</h3>
+          <p>Build, update, and confirm schedules with fewer steps and fewer mistakes.</p>
+          <ul class="bullets">
+            <li>Quick views across sites and units</li>
+            <li>Faster shift filling and changes</li>
+            <li>Clear handoffs between coordinators</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Managers</h3>
+          <p>Understand coverage and staffing risk early — before it becomes an emergency.</p>
+          <ul class="bullets">
+            <li>At-a-glance coverage confidence</li>
+            <li>Consistent rule enforcement</li>
+            <li>Audit-friendly oversight</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Clinicians</h3>
+          <p>Know where you’re needed, when you’re needed — with less confusion.</p>
+          <ul class="bullets">
+            <li>Clear assignments</li>
+            <li>Simple schedule access</li>
+            <li>Fewer last-minute surprises</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING (SIMPLE, SELLABLE) -->
+  <section id="pricing" aria-label="Plans">
+    <div class="container">
+      <div class="section-head">
+        <h2>Plans that scale with your coverage needs</h2>
+        <p class="lead">Start small, standardize fast, and expand confidently across teams and locations.</p>
+      </div>
+
+      <div class="pricing">
+        <article class="price">
+          <div class="glow" aria-hidden="true"></div>
+          <div class="plan">Starter</div>
+          <div class="tag">For small teams</div>
+          <div class="cost">Contact</div>
+          <div class="per">Best for clinics &amp; single-site teams</div>
+          <ul>
+            <li>Core scheduling workflow</li>
+            <li>Role-aware assignments</li>
+            <li>Coverage views &amp; alerts</li>
+            <li>Email support</li>
+          </ul>
+          <p class="fine">Great for getting out of spreadsheets quickly.</p>
+        </article>
+
+        <article class="price featured">
+          <div class="glow" aria-hidden="true"></div>
+          <div class="plan">Professional</div>
+          <div class="tag">Most popular</div>
+          <div class="cost">Contact</div>
+          <div class="per">Best for multi-team operations</div>
+          <ul>
+            <li>Everything in Starter</li>
+            <li>Multi-location scheduling</li>
+            <li>Approval &amp; audit history</li>
+            <li>Priority support</li>
+          </ul>
+          <p class="fine">A strong fit for organizations standardizing scheduling.</p>
+        </article>
+
+        <article class="price">
+          <div class="glow" aria-hidden="true"></div>
+          <div class="plan">Enterprise</div>
+          <div class="tag">For large organizations</div>
+          <div class="cost">Contact</div>
+          <div class="per">Best for regional coverage at scale</div>
+          <ul>
+            <li>Everything in Professional</li>
+            <li>Custom workflows &amp; reporting</li>
+            <li>Security &amp; governance controls</li>
+            <li>Implementation support</li>
+          </ul>
+          <p class="fine">Designed for complex staffing environments.</p>
+        </article>
+      </div>
+
+      <p class="fineprint">Tip: Replace “Contact” with your preferred pricing model once finalized.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT / CTA -->
+  <section class="cta-band" id="contact">
+    <div class="container cta-grid">
+      <div>
+        <h2>Ready to make scheduling easier?</h2>
+        <p class="lead" style="max-width: 64ch;">
+          MetricAid helps healthcare teams schedule confidently, reduce admin work, and keep care covered.
+          Tell us what you’re scheduling — and we’ll show you how fast it can be.
+        </p>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top: 18px">
+          <a class="btn primary" href="mailto:sales@metricaid.com?subject=MetricAid%20Scheduling%20Demo%20Request">Email sales</a>
+          <a class="btn ghost" href="mailto:hello@metricaid.com?subject=MetricAid%20Scheduling%20Info%20Request">Request info</a>
+        </div>
+
+        <p class="fineprint">
+          This page includes a static form demo (below). For production, connect it to your CRM/form provider.
+        </p>
+      </div>
+
+      <form class="form" onsubmit="return MetricAidLanding.submit(event);" aria-label="Contact form (static demo)">
+        <div class="row">
+          <label for="name">Name</label>
+          <input id="name" name="name" autocomplete="name" required placeholder="Jane Doe" />
+        </div>
+
+        <div class="row">
+          <label for="email">Work email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="jane@organization.com" />
+        </div>
+
+        <div class="row">
+          <label for="org">Organization</label>
+          <input id="org" name="org" autocomplete="organization" placeholder="Hospital / Clinic / Agency" />
+        </div>
+
+        <div class="row">
+          <label for="msg">What are you scheduling today?</label>
+          <textarea id="msg" name="msg" rows="4" required placeholder="Sites, roles (RN/PSW/MD), shift volume, pain points…"></textarea>
+        </div>
+
+        <button class="btn primary block" type="submit">Send</button>
+        <p class="statusline" id="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="brand" aria-label="MetricAid">
+      <span class="mark" aria-hidden="true"></span>
+      <b>MetricAid</b>
+    </div>
+
+    <div class="footer-links">
+      <a href="#top">Back to top</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Plans</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Minimal JS: mobile menu + static form behavior
+  const MetricAidLanding = (() => {
+    const $ = (sel, root=document) => root.querySelector(sel);
+
+    function initMenu(){
+      const btn = $('.menu-btn');
+      const panel = $('#mobile');
+      if(!btn || !panel) return;
+
+      function set(open){
+        btn.setAttribute('aria-expanded', String(open));
+        panel.hidden = !open;
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+
+      btn.addEventListener('click', () => {
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        set(!open);
+      });
+
+      panel.addEventListener('click', (e) => {
+        if(e.target && e.target.tagName === 'A') set(false);
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') set(false);
+      });
+
+      set(false);
+    }
+
+    function submit(e){
+      e.preventDefault();
+      const status = document.getElementById('status');
+      if(status){
+        status.textContent = "Thanks — this is a static demo form. Connect it to your CRM/form provider to receive submissions.";
+      }
+      return false;
+    }
+
+    function init(){
+      initMenu();
+    }
+
+    return { init, submit };
+  })();
+
+  window.addEventListener('DOMContentLoaded', () => MetricAidLanding.init());
+</script>
 </body>
 </html>
+
